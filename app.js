@@ -17,9 +17,9 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 
 // database connection
-const dbURI = 'mongodb+srv://mmitra:root@cluster0.2nkkb.mongodb.net/node-auth-from-scratch';
+const dbURI = `mongodb+srv://${process.env.mongoUserName}:${process.env.mongoPassword}@cluster0.2nkkb.mongodb.net/${process.env.mongoDataBase}`;
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
-    .then((result) => app.listen(3000))
+    .then((result) => app.listen(process.env.PORT || 3000))
     .catch((err) => console.log(err));
 
 // routes
